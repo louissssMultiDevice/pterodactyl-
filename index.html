@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,71 +20,140 @@
   </style>
 </head>
 <body class="p-6">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 p-4 mb-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="text-2xl font-semibold text-white">Fika Store</a>
+      <div class="space-x-6">
+        <a href="#monitor" class="text-white hover:text-blue-500">Monitor</a>
+        <a href="#store" class="text-white hover:text-blue-500">Store</a>
+        <a href="#contact" class="text-white hover:text-blue-500">Contact</a>
+      </div>
+    </div>
+  </nav>
+
   <header class="mb-10">
     <h1 class="text-4xl font-bold text-center">Fika Store | Panel Monitoring</h1>
     <p class="text-center text-gray-400">Monitoring dari panel asli: handi-lann.tokohost.online</p>
-  </header>  <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  </header>  
+
+  <!-- Monitoring Section -->
+  <main id="monitor" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div class="card p-6">
       <h2 class="text-xl font-semibold">Total User</h2>
       <p class="text-3xl mt-2" id="userCount">-</p>
-    </div><div class="card p-6">
-  <h2 class="text-xl font-semibold">Total Server</h2>
-  <p class="text-3xl mt-2" id="serverCount">-</p>
-</div>
+    </div>
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold">Total Server</h2>
+      <p class="text-3xl mt-2" id="serverCount">-</p>
+    </div>
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold">Panel Aktif</h2>
+      <p class="text-3xl mt-2" id="activePanels">-</p>
+    </div>
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold">Bot Aktif</h2>
+      <p class="text-3xl mt-2" id="botActive">-</p>
+    </div>
+    <div class="card p-6">
+      <h2 class="text-xl font-semibold">Status Panel</h2>
+      <p class="text-3xl mt-2" id="panelStatus">Checking...</p>
+    </div>
+  </main>
 
-<div class="card p-6">
-  <h2 class="text-xl font-semibold">Panel Aktif</h2>
-  <p class="text-3xl mt-2" id="activePanels">-</p>
-</div>
-
-<div class="card p-6">
-  <h2 class="text-xl font-semibold">Bot Aktif</h2>
-  <p class="text-3xl mt-2" id="botActive">-</p>
-</div>
-
-<div class="card p-6">
-  <h2 class="text-xl font-semibold">Status Panel</h2>
-  <p class="text-3xl mt-2" id="panelStatus">Checking...</p>
-</div>
-
-  </main>  <section class="mt-10">
+  <!-- Chart Section -->
+  <section class="mt-10">
     <canvas id="statusChart"></canvas>
-  </section>  <script>
-    // Simulasi data, ganti ini dengan fetch dari API asli jika ada
-    // Ganti URL dan endpoint sesuai kebutuhanmu
-const apiUrl = 'https://handi-lann.tokohost.online/api/application/'; // URL panel Pterodactyl
-const apiKey = 'ptla_DK2Z9YEz8PqFs4Iokx6v5sSLfvjesYzwHPB6MELWonf'; // API Key
+  </section>
 
+  <!-- Store Section -->
+  <section id="store" class="mt-20">
+    <h2 class="text-3xl text-center font-semibold text-white mb-6">Our Store</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <h3 class="text-2xl text-center text-white">Product 1</h3>
+        <p class="text-center text-gray-400">Description of Product 1</p>
+      </div>
+      <div class="card p-6">
+        <h3 class="text-2xl text-center text-white">Product 2</h3>
+        <p class="text-center text-gray-400">Description of Product 2</p>
+      </div>
+      <div class="card p-6">
+        <h3 class="text-2xl text-center text-white">Product 3</h3>
+        <p class="text-center text-gray-400">Description of Product 3</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="mt-20">
+    <h2 class="text-3xl text-center font-semibold text-white mb-6">Contact Us</h2>
+    <div class="card p-6">
+      <p class="text-center text-white">For any inquiries, feel free to contact us at:</p>
+      <p class="text-center text-blue-400 mt-2">contact@fikastore.com</p>
+    </div>
+  </section>
+
+  <!-- Script for Fetching Data -->
+  <script>
+    const apiUrl = 'https://handi-lann.tokohost.online/api/application/';
+const apiKey = 'ptla_DK2Z9YEz8PqFs4Iokx6v5sSLfvjesYzwHPB6MELWonf';
+
+// Fetch data pengguna
 fetch(`${apiUrl}users`, {
   method: 'GET',
   headers: {
-    'Authorization': `Bearer ${apiKey}`, // Menambahkan API Key ke header
+    'Authorization': `Bearer ${apiKey}`,
     'Content-Type': 'application/json'
   }
 })
   .then(res => res.json())
   .then(data => {
-    console.log(data); // Menampilkan data user
-    document.getElementById('userCount').textContent = data.data.length; // Menampilkan jumlah user
+    // Menampilkan jumlah user
+    document.getElementById('userCount').textContent = data.data.length;
   })
   .catch(error => {
-    console.error('Error fetching data:', error);
+    console.error('Error fetching user data:', error);
   });
-    const data = {
-      userCount: 89,
-      serverCount: 12,
-      activePanels: 7,
-      botActive: 4,
-      panelStatus: 'ONLINE'
-    };
 
-    document.getElementById('userCount').textContent = data.userCount;
-    document.getElementById('serverCount').textContent = data.serverCount;
-    document.getElementById('activePanels').textContent = data.activePanels;
-    document.getElementById('botActive').textContent = data.botActive;
-    document.getElementById('panelStatus').textContent = data.panelStatus;
+// Fetch data server (untuk jumlah server yang aktif)
+fetch(`${apiUrl}servers`, {
+  method: 'GET',
+  headers: {
+    'Authorization': `Bearer ${apiKey}`,
+    'Content-Type': 'application/json'
+  }
+})
+  .then(res => res.json())
+  .then(data => {
+    // Menampilkan jumlah server aktif
+    document.getElementById('serverCount').textContent = data.data.length;
+  })
+  .catch(error => {
+    console.error('Error fetching server data:', error);
+  });
 
-    // Chart.js
+// Fetch data panel aktif dan bot aktif (bisa disesuaikan dengan API panelmu)
+fetch(`${apiUrl}nodes`, {
+  method: 'GET',
+  headers: {
+    'Authorization': `Bearer ${apiKey}`,
+    'Content-Type': 'application/json'
+  }
+})
+  .then(res => res.json())
+  .then(data => {
+    // Menampilkan jumlah panel aktif
+    document.getElementById('activePanels').textContent = data.data.length;
+    // Mengasumsikan ada data bot atau panel aktif dalam API
+    document.getElementById('botActive').textContent = data.data.filter(node => node.status === 'online').length; // Misalnya ada status online
+    document.getElementById('panelStatus').textContent = 'ONLINE'; // Ubah sesuai status
+  })
+  .catch(error => {
+    console.error('Error fetching node data:', error);
+  });
+
+    
     const ctx = document.getElementById('statusChart').getContext('2d');
     const chart = new Chart(ctx, {
       type: 'doughnut',
@@ -96,5 +166,6 @@ fetch(`${apiUrl}users`, {
         }]
       }
     });
-  </script></body>
+  </script>
+</body>
 </html>
