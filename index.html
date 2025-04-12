@@ -5,19 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fika-Ai | Digital Marketplace</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
   <style>
     body {
       font-family: 'Roboto', sans-serif;
+      transition: all 0.3s ease;
     }
 
-    /* Dark Mode Styles */
     .dark-mode {
       background-color: #121212;
-      color: white;
+      color: #fff;
     }
+
     .light-mode {
       background-color: #ffffff;
-      color: black;
+      color: #000;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .btn {
+      background-color: #ff7e5f;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #feb47b;
+      cursor: pointer;
+    }
+
+    .card {
+      background: linear-gradient(45deg, #1f3c5a, #576d7e);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .card p {
+      color: #d1d1d1;
+    }
+
+    /* Smooth Scroll Animation */
+    section {
+      transition: all 0.6s ease-in-out;
     }
   </style>
   <script>
@@ -29,7 +80,6 @@
       localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
     }
 
-    // Set the theme based on localStorage
     window.onload = function() {
       const theme = localStorage.getItem('theme');
       if (theme === 'dark') {
@@ -40,50 +90,52 @@
     };
   </script>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="min-h-screen">
 
   <!-- Dark/Light Mode Toggle Button -->
-  <button onclick="toggleDarkMode()" class="absolute top-5 right-5 px-4 py-2 bg-indigo-500 text-white rounded-full">Toggle Mode</button>
+  <div class="absolute top-6 right-6 z-50">
+    <button onclick="toggleDarkMode()" class="px-4 py-2 bg-indigo-500 rounded-full text-white transition-all duration-300 hover:bg-indigo-600">🌙 / 🌞</button>
+  </div>
 
   <!-- Hero Section -->
-  <section class="hero-bg py-32 text-center">
-    <h1 class="text-5xl font-bold text-gradient mb-4">Fika-Ai | Digital Marketplace</h1>
-    <p class="text-2xl mb-6">Jelajahi berbagai layanan digital terbaik untuk kebutuhan Anda.</p>
+  <section class="py-32 bg-gradient-to-r from-purple-600 to-indigo-800 text-center text-white">
+    <h1 class="text-6xl font-bold mb-4 gradient-text">Fika-Ai | Digital Marketplace</h1>
+    <p class="text-xl mb-6">Temukan layanan digital terbaik untuk kebutuhan Anda, dengan harga terjangkau dan kualitas tanpa kompromi.</p>
     <a href="#store" class="btn">Jelajahi Store Kami</a>
   </section>
 
-  <!-- Store Section with Scroll Animation -->
+  <!-- Store Section with Smooth Scroll Animation -->
   <section id="store" class="py-20 text-center">
-    <h2 class="text-4xl font-extrabold mb-12 text-gradient">Layanan Kami</h2>
+    <h2 class="text-4xl font-extrabold text-gradient mb-12">Layanan Kami</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
-      <div class="card p-6 shadow-xl rounded-xl">
-        <h3 class="text-xl font-semibold">Pulsa Mulai 5K</h3>
-        <p class="text-gray-300 mt-2">Pulsa murah dengan harga terjangkau, transaksi cepat dan mudah.</p>
+      <div class="card p-6">
+        <h3 class="font-semibold">Pulsa Mulai 5K</h3>
+        <p>Harga terjangkau untuk pulsa dengan transaksi cepat dan mudah.</p>
       </div>
-      <div class="card p-6 shadow-xl rounded-xl">
-        <h3 class="text-xl font-semibold">Panel Pterodactyl</h3>
-        <p class="text-gray-300 mt-2">Panel canggih untuk bot dengan fitur tanpa batas.</p>
+      <div class="card p-6">
+        <h3 class="font-semibold">Panel Pterodactyl</h3>
+        <p>Panel canggih untuk bot, VPS, dan server dengan fitur tanpa batas.</p>
       </div>
-      <div class="card p-6 shadow-xl rounded-xl">
-        <h3 class="text-xl font-semibold">Server Minecraft</h3>
-        <p class="text-gray-300 mt-2">Server Minecraft dengan RAM hingga 16GB, tanpa lag.</p>
+      <div class="card p-6">
+        <h3 class="font-semibold">Server Minecraft</h3>
+        <p>Server dengan RAM hingga 16GB, menawarkan pengalaman gaming tanpa lag.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="bg-indigo-900 py-16 text-center">
-    <h2 class="text-4xl font-semibold text-white mb-6">Hubungi Kami</h2>
-    <p class="text-xl text-white mb-6">Ada pertanyaan? Jangan ragu untuk menghubungi kami langsung!</p>
+  <!-- Contact Section with Floating Effects -->
+  <section id="contact" class="bg-gradient-to-r from-indigo-700 to-purple-900 py-16 text-center text-white">
+    <h2 class="text-4xl font-semibold mb-6">Hubungi Kami</h2>
+    <p class="text-xl mb-6">Ada pertanyaan? Kami siap membantu Anda dengan segala informasi terkait layanan.</p>
     <a href="mailto:cs@fikastore.id" class="btn">Email Kami</a>
     <br>
     <a href="https://wa.me/6287717274346" class="btn mt-4">Chat via WhatsApp</a>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-12 text-center bg-gray-800 text-white">
+  <!-- Footer with Social Links -->
+  <footer class="py-12 bg-gray-800 text-white text-center">
     <p>&copy; 2025 Fika Store. Semua hak dilindungi.</p>
-    <a href="https://www.fikastore.id" class="footer-link">Kunjungi Website Kami</a>
+    <a href="https://www.fikastore.id" class="text-gray-400">Kunjungi Website Kami</a>
   </footer>
 
 </body>
