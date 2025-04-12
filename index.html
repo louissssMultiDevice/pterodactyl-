@@ -5,96 +5,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fika-Ai | Digital Marketplace</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-    /* Full screen background animation */
-    @keyframes gradient {
-      0% {
-        background: linear-gradient(45deg, #ff6a00, #ffcc00);
-      }
-      50% {
-        background: linear-gradient(45deg, #00b7ff, #ff00ff);
-      }
-      100% {
-        background: linear-gradient(45deg, #ff6a00, #ffcc00);
-      }
-    }
-
+    /* Hero Background */
     .hero-bg {
-      animation: gradient 5s ease infinite;
-      background-size: 400% 400%;
+      background: linear-gradient(45deg, rgba(52, 58, 64, 1) 0%, rgba(47, 54, 64, 1) 50%, rgba(0, 0, 0, 0.5) 100%);
+      background-size: cover;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
-      font-family: 'Roboto', sans-serif;
       text-align: center;
+      font-family: 'Roboto', sans-serif;
     }
 
-    /* Fancy buttons */
-    .btn {
-      padding: 16px 48px;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 50px;
-      color: white;
-      text-transform: uppercase;
-      background-color: #6b4eff;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      transform: scale(1.1);
-      background-color: #4c3fdb;
-    }
-
-    .card {
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 25px;
-      padding: 30px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      transition: all 0.4s ease-in-out;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-    }
-
-    .product-title {
-      font-size: 24px;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .product-desc {
-      color: #ccc;
-      margin-top: 8px;
-    }
-
-    /* Gradient effect on text */
     .gradient-text {
-      background-image: linear-gradient(to right, #ff6a00, #ffcc00);
+      background-image: linear-gradient(to right, #6a5acd, #00bcd4);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    /* Full screen footer */
+    /* Fancy Buttons */
+    .btn {
+      padding: 16px 40px;
+      background: #00bcd4;
+      color: white;
+      border-radius: 30px;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .btn:hover {
+      background: #0288d1;
+      transform: scale(1.05);
+    }
+
+    /* Card Effect */
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-title {
+      font-size: 20px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .product-desc {
+      color: #b0bec5;
+      margin-top: 12px;
+      font-size: 16px;
+    }
+
+    /* Footer */
     footer {
-      background: #1a202c;
+      background-color: #1a202c;
       color: white;
       padding: 50px 0;
       text-align: center;
     }
 
     .footer-link {
-      color: #6b4eff;
+      color: #00bcd4;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Scroll animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 1s ease-out;
     }
   </style>
 </head>
@@ -103,42 +109,42 @@
 
   <!-- Hero Section -->
   <section class="hero-bg">
-    <div>
-      <h1 class="text-5xl font-extrabold mb-6 gradient-text">
+    <div class="animate-fadeIn">
+      <h1 class="text-6xl font-extrabold mb-6 gradient-text">
         Fika-Ai | Digital Marketplace
       </h1>
-      <p class="text-2xl mb-8 max-w-xl mx-auto">Transformasi digital dimulai di sini. Temukan layanan digital terbaik untuk kebutuhan Anda dengan kualitas premium.</p>
+      <p class="text-2xl mb-8 max-w-xl mx-auto">Layanan premium untuk kebutuhan digital Anda, dari pulsa hingga server dengan kualitas terbaik. Mulai perjalanan digital Anda di sini!</p>
       <a href="#store" class="btn">Jelajahi Store Kami</a>
     </div>
   </section>
 
   <!-- Store Section -->
-  <section id="store" class="py-20 bg-gray-900 text-white text-center">
-    <h2 class="text-4xl font-extrabold mb-12 gradient-text">Layanan Kami yang Luar Biasa</h2>
+  <section id="store" class="py-20 bg-gray-900 text-white text-center animate-fadeIn">
+    <h2 class="text-4xl font-extrabold mb-12 gradient-text">Layanan Kami</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 px-8">
       <div class="card">
         <h3 class="product-title">Pulsa Mulai 5K</h3>
-        <p class="product-desc">Pulsa murah dengan harga terjangkau, nikmati kemudahan transaksi.</p>
+        <p class="product-desc">Pulsa murah dengan harga terjangkau, transaksi mudah dan cepat.</p>
       </div>
       <div class="card">
         <h3 class="product-title">Panel Pterodactyl</h3>
-        <p class="product-desc">Panel bot canggih dengan fitur unlimited, kualitas tanpa tanding!</p>
+        <p class="product-desc">Panel canggih untuk bot dengan fitur tanpa batas, performa luar biasa.</p>
       </div>
       <div class="card">
         <h3 class="product-title">Server Minecraft</h3>
-        <p class="product-desc">Server Minecraft dengan RAM hingga 16GB, siap untuk petualangan tak terbatas.</p>
+        <p class="product-desc">Server Minecraft dengan RAM hingga 16GB, pengalaman bermain tanpa lag.</p>
       </div>
       <div class="card">
         <h3 class="product-title">VPS Hosting</h3>
-        <p class="product-desc">VPS dengan performa tinggi, mulai dari 1GB C1 hingga 16GB C8. Optimalisasi penuh.</p>
+        <p class="product-desc">VPS dengan performa tinggi, optimalisasi penuh, mulai dari 1GB hingga 16GB RAM.</p>
       </div>
       <div class="card">
         <h3 class="product-title">Jasa Edit Script</h3>
-        <p class="product-desc">Kustomisasi dan tambahkan fitur baru pada bot WhatsApp atau server kamu.</p>
+        <p class="product-desc">Kustomisasi script bot WhatsApp dan tambahkan fitur sesuai kebutuhan Anda.</p>
       </div>
       <div class="card">
         <h3 class="product-title">Setup Server MC</h3>
-        <p class="product-desc">Setup server Minecraft tanpa ribet, siap bermain bersama teman-teman.</p>
+        <p class="product-desc">Setup server Minecraft dengan mudah, siap bermain bersama teman-teman.</p>
       </div>
     </div>
   </section>
@@ -157,18 +163,6 @@
     <p>&copy; 2025 Fika Store. Semua hak dilindungi.</p>
     <a href="https://www.fikastore.id" class="footer-link">Kunjungi Website Kami</a>
   </footer>
-
-  <!-- SweetAlert on page load -->
-  <script>
-    window.onload = function() {
-      Swal.fire({
-        title: 'Selamat datang di Fika-Ai | Digital Marketplace!',
-        text: 'Mulailah menjelajahi layanan dan produk terbaik di sini.',
-        icon: 'success',
-        confirmButtonText: 'Mulai Eksplorasi'
-      });
-    }
-  </script>
 
 </body>
 </html>
