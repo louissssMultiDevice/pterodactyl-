@@ -5,33 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Monitoring Panel - Fika Store</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Menambahkan efek hover pada tabel */
+    tr:hover {
+      background-color: #2d3748;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen p-4">
-  <div class="max-w-5xl mx-auto">
+<body class="bg-gray-900 text-white min-h-screen p-6">
+
+  <div class="max-w-7xl mx-auto">
     <h1 class="text-3xl font-bold mb-6 text-center">Monitoring Panel - Fika Store</h1>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-      <div class="bg-gray-800 p-4 rounded-xl text-center shadow-lg">
+    <!-- Kartu Statistik -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-gray-800 p-6 rounded-xl text-center shadow-lg">
         <p class="text-sm">Total Panel</p>
         <h2 id="totalPanel" class="text-2xl font-bold">0</h2>
       </div>
-      <div class="bg-green-800 p-4 rounded-xl text-center shadow-lg">
+      <div class="bg-green-800 p-6 rounded-xl text-center shadow-lg">
         <p class="text-sm">Panel Aktif</p>
         <h2 id="aktifPanel" class="text-2xl font-bold">0</h2>
       </div>
-      <div class="bg-red-800 p-4 rounded-xl text-center shadow-lg">
+      <div class="bg-red-800 p-6 rounded-xl text-center shadow-lg">
         <p class="text-sm">Panel Mati</p>
         <h2 id="matiPanel" class="text-2xl font-bold">0</h2>
       </div>
-      <div class="bg-indigo-800 p-4 rounded-xl text-center shadow-lg">
+      <div class="bg-indigo-800 p-6 rounded-xl text-center shadow-lg">
         <p class="text-sm">Total User</p>
         <h2 id="totalUser" class="text-2xl font-bold">0</h2>
       </div>
     </div>
 
+    <!-- Tabel Panel -->
     <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
       <h3 class="text-xl font-semibold mb-4">Daftar Panel</h3>
-      <table class="w-full text-left table-auto">
+      <table class="w-full text-left table-auto border-collapse">
         <thead>
           <tr class="border-b border-gray-700">
             <th class="pb-2">ID</th>
@@ -44,18 +53,20 @@
       </table>
     </div>
   </div>
+
+  <!-- Store Section -->
   <section id="store" class="mt-20">
     <h2 class="text-3xl text-center font-bold mb-6">Our Store</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="card p-6 text-center">
+      <div class="card p-6 text-center bg-gray-800 rounded-xl shadow-lg">
         <h3 class="text-2xl font-bold">Product 1</h3>
         <p class="text-gray-400 mt-2">Description of Product 1</p>
       </div>
-      <div class="card p-6 text-center">
+      <div class="card p-6 text-center bg-gray-800 rounded-xl shadow-lg">
         <h3 class="text-2xl font-bold">Product 2</h3>
         <p class="text-gray-400 mt-2">Description of Product 2</p>
       </div>
-      <div class="card p-6 text-center">
+      <div class="card p-6 text-center bg-gray-800 rounded-xl shadow-lg">
         <h3 class="text-2xl font-bold">Product 3</h3>
         <p class="text-gray-400 mt-2">Description of Product 3</p>
       </div>
@@ -65,52 +76,60 @@
   <!-- Contact Section -->
   <section id="contact" class="mt-20 text-center">
     <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
-    <div class="card p-6 inline-block">
+    <div class="card p-6 inline-block bg-gray-800 rounded-xl shadow-lg">
       <p>Untuk pertanyaan lebih lanjut, hubungi kami di:</p>
       <p class="text-blue-400 mt-2">contact@fikastore.com</p>
     </div>
   </section>
-  
 
   <script>
-    // Ganti path berikut sesuai lokasi file JSON kamu
-    fetch('https://panel.fikastore.my.id/api/application/servers', {
-  headers: {
-    'Authorization': 'Bearer API_KEY_KAMU',
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-})
-.then(res => res.json())
-.then(data => {
-  console.log(data); // Lanjutkan tampilkan ke UI
-        const panels = data.data;
+    const apiKey = 'ptla_DK2Z9YEz8PqFs4Iokx6v5sSLfvjesYzwHPB6MELWonf'; // Ganti dengan API key yang sesuai
 
-        document.getElementById("totalPanel").textContent = panels.length;
-        document.getElementById("aktifPanel").textContent = panels.filter(p => p.status === true).length;
-        document.getElementById("matiPanel").textContent = panels.filter(p => p.status === false).length;
+    // Mengambil data panel dari API Pterodactyl
+    fetch('https://handi-lann.tokohost.online/api/application/servers', {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      const panels = data.data || [];
+      if (panels.length === 0) {
+        alert('Tidak ada data panel yang ditemukan.');
+        return;
+      }
 
-        const uniqueUsers = new Set(panels.map(p => p.user));
-        document.getElementById("totalUser").textContent = uniqueUsers.size;
+      // Update statistik panel
+      document.getElementById("totalPanel").textContent = panels.length;
+      document.getElementById("aktifPanel").textContent = panels.filter(p => p.status === true).length;
+      document.getElementById("matiPanel").textContent = panels.filter(p => p.status === false).length;
 
-        const panelList = document.getElementById("panelList");
-        panels.forEach(panel => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td class="py-1">${panel.id}</td>
-            <td>${panel.name}</td>
-            <td>${panel.user}</td>
-            <td class="${panel.status ? 'text-green-400' : 'text-red-400'} font-semibold">
-              ${panel.status ? 'Aktif' : 'Mati'}
-            </td>
-          `;
-          panelList.appendChild(row);
-        });
-      })
-      .catch(err => {
-        console.error("Gagal memuat data:", err);
+      // Menghitung jumlah user unik
+      const uniqueUsers = new Set(panels.map(p => p.user));
+      document.getElementById("totalUser").textContent = uniqueUsers.size;
+
+      // Menampilkan daftar panel
+      const panelList = document.getElementById("panelList");
+      panels.forEach(panel => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="py-3">${panel.id}</td>
+          <td class="py-3">${panel.name}</td>
+          <td class="py-3">${panel.user}</td>
+          <td class="py-3 ${panel.status ? 'text-green-400' : 'text-red-400'} font-semibold">
+            ${panel.status ? 'Aktif' : 'Mati'}
+          </td>
+        `;
+        panelList.appendChild(row);
       });
+    })
+    .catch(err => {
+      console.error("Gagal memuat data:", err);
+      alert('Terjadi kesalahan saat memuat data panel.');
+    });
   </script>
+
 </body>
 </html>
-  
