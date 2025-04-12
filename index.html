@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fika Panel Monitor</title>
+  <title>Fika Panel Monitoring</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -15,157 +15,169 @@
     .card {
       background-color: #1e293b;
       border-radius: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
     }
   </style>
 </head>
 <body class="p-6">
+
   <!-- Navbar -->
-  <nav class="bg-gray-800 p-4 mb-6">
+  <nav class="bg-gray-900 p-4 rounded-xl shadow-lg mb-8">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <a href="#" class="text-2xl font-semibold text-white">Fika Store</a>
+      <a href="#" class="text-2xl font-bold text-white tracking-wider">Fika Store</a>
       <div class="space-x-6">
-        <a href="#monitor" class="text-white hover:text-blue-500">Monitor</a>
-        <a href="#store" class="text-white hover:text-blue-500">Store</a>
-        <a href="#contact" class="text-white hover:text-blue-500">Contact</a>
+        <a href="#monitor" class="text-white hover:text-blue-400 transition">Monitor</a>
+        <a href="#store" class="text-white hover:text-blue-400 transition">Store</a>
+        <a href="#contact" class="text-white hover:text-blue-400 transition">Contact</a>
       </div>
     </div>
   </nav>
 
-  <header class="mb-10">
-    <h1 class="text-4xl font-bold text-center">Fika Store | Panel Monitoring</h1>
-    <p class="text-center text-gray-400">Monitoring dari panel asli: Fika Hosting</p>
-  </header>  
+  <!-- Header -->
+  <header class="text-center mb-10">
+    <h1 class="text-4xl font-extrabold mb-2">Fika Panel Monitoring</h1>
+    <p class="text-gray-400">Live update dari sistem panel Fika Hosting</p>
+  </header>
 
   <!-- Monitoring Section -->
   <main id="monitor" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div class="card p-6">
+    <div class="card p-6 text-center">
       <h2 class="text-xl font-semibold">Total User</h2>
-      <p class="text-3xl mt-2" id="userCount">-</p>
+      <p class="text-3xl mt-2 font-bold text-blue-400" id="userCount">-</p>
     </div>
-    <div class="card p-6">
+    <div class="card p-6 text-center">
       <h2 class="text-xl font-semibold">Total Server</h2>
-      <p class="text-3xl mt-2" id="serverCount">-</p>
+      <p class="text-3xl mt-2 font-bold text-green-400" id="serverCount">-</p>
     </div>
-    <div class="card p-6">
+    <div class="card p-6 text-center">
       <h2 class="text-xl font-semibold">Panel Aktif</h2>
-      <p class="text-3xl mt-2" id="activePanels">-</p>
+      <p class="text-3xl mt-2 font-bold text-yellow-400" id="activePanels">-</p>
     </div>
-    <div class="card p-6">
+    <div class="card p-6 text-center">
       <h2 class="text-xl font-semibold">Bot Aktif</h2>
-      <p class="text-3xl mt-2" id="botActive">-</p>
+      <p class="text-3xl mt-2 font-bold text-red-400" id="botActive">-</p>
     </div>
-    <div class="card p-6">
+    <div class="card p-6 text-center">
       <h2 class="text-xl font-semibold">Status Panel</h2>
-      <p class="text-3xl mt-2" id="panelStatus">Checking...</p>
+      <p class="text-3xl mt-2 font-bold text-indigo-400" id="panelStatus">Checking...</p>
     </div>
   </main>
 
   <!-- Chart Section -->
-  <section class="mt-10">
-    <canvas id="statusChart"></canvas>
+  <section class="mt-14 bg-gray-900 p-6 rounded-xl shadow-md">
+    <h2 class="text-2xl font-semibold text-center mb-4">Panel Overview Chart</h2>
+    <canvas id="statusChart" class="mx-auto max-w-2xl"></canvas>
   </section>
 
   <!-- Store Section -->
   <section id="store" class="mt-20">
-    <h2 class="text-3xl text-center font-semibold text-white mb-6">Our Store</h2>
+    <h2 class="text-3xl text-center font-bold mb-6">Our Store</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="card p-6">
-        <h3 class="text-2xl text-center text-white">Product 1</h3>
-        <p class="text-center text-gray-400">Description of Product 1</p>
+      <div class="card p-6 text-center">
+        <h3 class="text-2xl font-bold">Product 1</h3>
+        <p class="text-gray-400 mt-2">Description of Product 1</p>
       </div>
-      <div class="card p-6">
-        <h3 class="text-2xl text-center text-white">Product 2</h3>
-        <p class="text-center text-gray-400">Description of Product 2</p>
+      <div class="card p-6 text-center">
+        <h3 class="text-2xl font-bold">Product 2</h3>
+        <p class="text-gray-400 mt-2">Description of Product 2</p>
       </div>
-      <div class="card p-6">
-        <h3 class="text-2xl text-center text-white">Product 3</h3>
-        <p class="text-center text-gray-400">Description of Product 3</p>
+      <div class="card p-6 text-center">
+        <h3 class="text-2xl font-bold">Product 3</h3>
+        <p class="text-gray-400 mt-2">Description of Product 3</p>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="mt-20">
-    <h2 class="text-3xl text-center font-semibold text-white mb-6">Contact Us</h2>
-    <div class="card p-6">
-      <p class="text-center text-white">For any inquiries, feel free to contact us at:</p>
-      <p class="text-center text-blue-400 mt-2">contact@fikastore.com</p>
+  <section id="contact" class="mt-20 text-center">
+    <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+    <div class="card p-6 inline-block">
+      <p>Untuk pertanyaan lebih lanjut, hubungi kami di:</p>
+      <p class="text-blue-400 mt-2">contact@fikastore.com</p>
     </div>
   </section>
 
-  <!-- Script for Fetching Data -->
+  <!-- Script Section -->
   <script>
     const apiUrl = 'https://handi-lann.tokohost.online/api/application/';
-const apiKey = 'ptla_DK2Z9YEz8PqFs4Iokx6v5sSLfvjesYzwHPB6MELWonf';
+    const apiKey = 'ptla_DK2Z9YEz8PqFs4Iokx6v5sSLfvjesYzwHPB6MELWonf';
 
-// Fetch data pengguna
-fetch(`${apiUrl}users`, {
-  method: 'GET',
-  headers: {
-    'Authorization': `Bearer ${apiKey}`,
-    'Content-Type': 'application/json'
-  }
-})
-  .then(res => res.json())
-  .then(data => {
-    // Menampilkan jumlah user
-    document.getElementById('userCount').textContent = data.data.length;
-  })
-  .catch(error => {
-    console.error('Error fetching user data:', error);
-  });
+    const headers = {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    };
 
-// Fetch data server (untuk jumlah server yang aktif)
-fetch(`${apiUrl}servers`, {
-  method: 'GET',
-  headers: {
-    'Authorization': `Bearer ${apiKey}`,
-    'Content-Type': 'application/json'
-  }
-})
-  .then(res => res.json())
-  .then(data => {
-    // Menampilkan jumlah server aktif
-    document.getElementById('serverCount').textContent = data.data.length;
-  })
-  .catch(error => {
-    console.error('Error fetching server data:', error);
-  });
+    const dataStats = {
+      userCount: 0,
+      serverCount: 0,
+      activePanels: 0,
+      botActive: 0
+    };
 
-// Fetch data panel aktif dan bot aktif (bisa disesuaikan dengan API panelmu)
-fetch(`${apiUrl}nodes`, {
-  method: 'GET',
-  headers: {
-    'Authorization': `Bearer ${apiKey}`,
-    'Content-Type': 'application/json'
-  }
-})
-  .then(res => res.json())
-  .then(data => {
-    // Menampilkan jumlah panel aktif
-    document.getElementById('activePanels').textContent = data.data.length;
-    // Mengasumsikan ada data bot atau panel aktif dalam API
-    document.getElementById('botActive').textContent = data.data.filter(node => node.status === 'online').length; // Misalnya ada status online
-    document.getElementById('panelStatus').textContent = 'ONLINE'; // Ubah sesuai status
-  })
-  .catch(error => {
-    console.error('Error fetching node data:', error);
-  });
+    const updateChart = () => {
+      const ctx = document.getElementById('statusChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Users', 'Servers', 'Panels', 'Bots'],
+          datasets: [{
+            label: 'Statistics',
+            data: [
+              dataStats.userCount,
+              dataStats.serverCount,
+              dataStats.activePanels,
+              dataStats.botActive
+            ],
+            backgroundColor: ['#3b82f6', '#10b981', '#facc15', '#ef4444'],
+            borderColor: ['#1e40af', '#065f46', '#a16207', '#991b1b'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              labels: { color: "#fff" }
+            }
+          }
+        }
+      });
+    };
 
-    
-    const ctx = document.getElementById('statusChart').getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['User', 'Server', 'Active Panels', 'Bot'],
-        datasets: [{
-          label: 'Panel Stats',
-          data: [data.userCount, data.serverCount, data.activePanels, data.botActive],
-          backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
-        }]
+    const updateDOM = () => {
+      document.getElementById('userCount').textContent = dataStats.userCount;
+      document.getElementById('serverCount').textContent = dataStats.serverCount;
+      document.getElementById('activePanels').textContent = dataStats.activePanels;
+      document.getElementById('botActive').textContent = dataStats.botActive;
+      document.getElementById('panelStatus').textContent = dataStats.activePanels > 0 ? 'ONLINE' : 'OFFLINE';
+    };
+
+    const fetchAll = async () => {
+      try {
+        const [users, servers, nodes] = await Promise.all([
+          fetch(`${apiUrl}users`, { headers }).then(res => res.json()),
+          fetch(`${apiUrl}servers`, { headers }).then(res => res.json()),
+          fetch(`${apiUrl}nodes`, { headers }).then(res => res.json())
+        ]);
+
+        dataStats.userCount = users.data.length;
+        dataStats.serverCount = servers.data.length;
+        dataStats.activePanels = nodes.data.length;
+        dataStats.botActive = nodes.data.filter(n => n.status === 'online').length;
+
+        updateDOM();
+        updateChart();
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        document.getElementById('panelStatus').textContent = 'ERROR';
       }
-    });
+    };
+
+    fetchAll();
   </script>
 </body>
 </html>
