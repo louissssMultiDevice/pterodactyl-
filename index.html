@@ -50,25 +50,25 @@
     <canvas id="statusChart"></canvas>
   </section>  <script>
     // Simulasi data, ganti ini dengan fetch dari API asli jika ada
-    fetch('ptla_DK2Z9YEz8PqFs4Iokx6v5sSLfvjesYzwHPB6MELWonf')
+    // Ganti URL dan endpoint sesuai kebutuhanmu
+const apiUrl = 'https://handi-lann.tokohost.online/api/application/'; // URL panel Pterodactyl
+const apiKey = 'ptla_DK2Z9YEz8PqFs4Iokx6v5sSLfvjesYzwHPB6MELWonf'; // API Key
+
+fetch(`${apiUrl}users`, {
+  method: 'GET',
+  headers: {
+    'Authorization': `Bearer ${apiKey}`, // Menambahkan API Key ke header
+    'Content-Type': 'application/json'
+  }
+})
   .then(res => res.json())
   .then(data => {
-    document.getElementById('userCount').textContent = data.users;
-    document.getElementById('serverCount').textContent = data.servers;
-    document.getElementById('activePanels').textContent = data.panels_active;
-    document.getElementById('botActive').textContent = data.bots_active;
-    document.getElementById('panelStatus').textContent = data.status;
-
-    // Update Chart
-    chart.data.datasets[0].data = [
-      data.users, data.servers, data.panels_active, data.bots_active
-    ];
-    chart.update();
+    console.log(data); // Menampilkan data user
+    document.getElementById('userCount').textContent = data.data.length; // Menampilkan jumlah user
   })
   .catch(error => {
-    console.error('Gagal fetch data:', error);
-    document.getElementById('panelStatus').textContent = 'OFFLINE';
-  };
+    console.error('Error fetching data:', error);
+  });
     const data = {
       userCount: 89,
       serverCount: 12,
