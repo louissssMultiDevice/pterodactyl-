@@ -6,160 +6,82 @@
   <title>Fika-Ai | Digital Marketplace</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Hero Background */
-    .hero-bg {
-      background: linear-gradient(45deg, rgba(52, 58, 64, 1) 0%, rgba(47, 54, 64, 1) 50%, rgba(0, 0, 0, 0.5) 100%);
-      background-size: cover;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
+    body {
       font-family: 'Roboto', sans-serif;
     }
 
-    .gradient-text {
-      background-image: linear-gradient(to right, #6a5acd, #00bcd4);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    /* Fancy Buttons */
-    .btn {
-      padding: 16px 40px;
-      background: #00bcd4;
+    /* Dark Mode Styles */
+    .dark-mode {
+      background-color: #121212;
       color: white;
-      border-radius: 30px;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 16px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
     }
-
-    .btn:hover {
-      background: #0288d1;
-      transform: scale(1.05);
-    }
-
-    /* Card Effect */
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(10px);
-      transition: all 0.4s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-    }
-
-    .product-title {
-      font-size: 20px;
-      color: white;
-      font-weight: bold;
-    }
-
-    .product-desc {
-      color: #b0bec5;
-      margin-top: 12px;
-      font-size: 16px;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #1a202c;
-      color: white;
-      padding: 50px 0;
-      text-align: center;
-    }
-
-    .footer-link {
-      color: #00bcd4;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .footer-link:hover {
-      text-decoration: underline;
-    }
-
-    /* Scroll animation */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    .animate-fadeIn {
-      animation: fadeIn 1s ease-out;
+    .light-mode {
+      background-color: #ffffff;
+      color: black;
     }
   </style>
-</head>
+  <script>
+    // Dark/Light Mode Toggle
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
+      localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
 
-<body class="bg-gray-900 font-sans">
+    // Set the theme based on localStorage
+    window.onload = function() {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.add('light-mode');
+      }
+    };
+  </script>
+</head>
+<body class="bg-gray-900 text-white">
+
+  <!-- Dark/Light Mode Toggle Button -->
+  <button onclick="toggleDarkMode()" class="absolute top-5 right-5 px-4 py-2 bg-indigo-500 text-white rounded-full">Toggle Mode</button>
 
   <!-- Hero Section -->
-  <section class="hero-bg">
-    <div class="animate-fadeIn">
-      <h1 class="text-6xl font-extrabold mb-6 gradient-text">
-        Fika-Ai | Digital Marketplace
-      </h1>
-      <p class="text-2xl mb-8 max-w-xl mx-auto">Layanan premium untuk kebutuhan digital Anda, dari pulsa hingga server dengan kualitas terbaik. Mulai perjalanan digital Anda di sini!</p>
-      <a href="#store" class="btn">Jelajahi Store Kami</a>
-    </div>
+  <section class="hero-bg py-32 text-center">
+    <h1 class="text-5xl font-bold text-gradient mb-4">Fika-Ai | Digital Marketplace</h1>
+    <p class="text-2xl mb-6">Jelajahi berbagai layanan digital terbaik untuk kebutuhan Anda.</p>
+    <a href="#store" class="btn">Jelajahi Store Kami</a>
   </section>
 
-  <!-- Store Section -->
-  <section id="store" class="py-20 bg-gray-900 text-white text-center animate-fadeIn">
-    <h2 class="text-4xl font-extrabold mb-12 gradient-text">Layanan Kami</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 px-8">
-      <div class="card">
-        <h3 class="product-title">Pulsa Mulai 5K</h3>
-        <p class="product-desc">Pulsa murah dengan harga terjangkau, transaksi mudah dan cepat.</p>
+  <!-- Store Section with Scroll Animation -->
+  <section id="store" class="py-20 text-center">
+    <h2 class="text-4xl font-extrabold mb-12 text-gradient">Layanan Kami</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
+      <div class="card p-6 shadow-xl rounded-xl">
+        <h3 class="text-xl font-semibold">Pulsa Mulai 5K</h3>
+        <p class="text-gray-300 mt-2">Pulsa murah dengan harga terjangkau, transaksi cepat dan mudah.</p>
       </div>
-      <div class="card">
-        <h3 class="product-title">Panel Pterodactyl</h3>
-        <p class="product-desc">Panel canggih untuk bot dengan fitur tanpa batas, performa luar biasa.</p>
+      <div class="card p-6 shadow-xl rounded-xl">
+        <h3 class="text-xl font-semibold">Panel Pterodactyl</h3>
+        <p class="text-gray-300 mt-2">Panel canggih untuk bot dengan fitur tanpa batas.</p>
       </div>
-      <div class="card">
-        <h3 class="product-title">Server Minecraft</h3>
-        <p class="product-desc">Server Minecraft dengan RAM hingga 16GB, pengalaman bermain tanpa lag.</p>
-      </div>
-      <div class="card">
-        <h3 class="product-title">VPS Hosting</h3>
-        <p class="product-desc">VPS dengan performa tinggi, optimalisasi penuh, mulai dari 1GB hingga 16GB RAM.</p>
-      </div>
-      <div class="card">
-        <h3 class="product-title">Jasa Edit Script</h3>
-        <p class="product-desc">Kustomisasi script bot WhatsApp dan tambahkan fitur sesuai kebutuhan Anda.</p>
-      </div>
-      <div class="card">
-        <h3 class="product-title">Setup Server MC</h3>
-        <p class="product-desc">Setup server Minecraft dengan mudah, siap bermain bersama teman-teman.</p>
+      <div class="card p-6 shadow-xl rounded-xl">
+        <h3 class="text-xl font-semibold">Server Minecraft</h3>
+        <p class="text-gray-300 mt-2">Server Minecraft dengan RAM hingga 16GB, tanpa lag.</p>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="bg-gradient-to-r from-purple-600 to-indigo-800 py-16 text-center">
-    <h2 class="text-4xl font-bold text-white mb-6">Hubungi Kami</h2>
-    <p class="text-xl text-white mb-8">Kami siap membantu Anda! Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi kami.</p>
+  <section id="contact" class="bg-indigo-900 py-16 text-center">
+    <h2 class="text-4xl font-semibold text-white mb-6">Hubungi Kami</h2>
+    <p class="text-xl text-white mb-6">Ada pertanyaan? Jangan ragu untuk menghubungi kami langsung!</p>
     <a href="mailto:cs@fikastore.id" class="btn">Email Kami</a>
     <br>
     <a href="https://wa.me/6287717274346" class="btn mt-4">Chat via WhatsApp</a>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="py-12 text-center bg-gray-800 text-white">
     <p>&copy; 2025 Fika Store. Semua hak dilindungi.</p>
     <a href="https://www.fikastore.id" class="footer-link">Kunjungi Website Kami</a>
   </footer>
