@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background-color: #0f1032;
+      color: white;
+      padding: 2rem;
+    }
+    h1 {
+      color: #2dce89;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    .card {
+      background: #1b1c3e;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .logout-btn {
+      background: #ff4c4c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="logout-btn" onclick="window.location.href='login.html'">Logout</button>
+    <h1>Welcome, User</h1>
+    <div class="card">
+      <h2>Your Server Status</h2>
+      <p>Status: Online</p>
+      <p>IP: play.privhandi.my.id</p>
+      <p>RAM Usage: 512MB / 2GB</p>
+    </div>
+    <div class="card">
+      <h2>Actions</h2>
+      <ul>
+        <li>Start / Stop Server</li>
+        <li>Check Console Logs</li>
+        <li>Update Server</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
